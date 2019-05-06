@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>let const变量声明</title>
+    </head>
+    <body>
+        <script>
+            var a=100;
+            if(a>10){
+                // var b=20;
+                // let b=20;
+                const b=20;
+            }
+            // console.log("b = "+b);
+            let demo=10;
+            demo=20;
+            // let demo=30;
+            const demo1=11;
+            // demo1=12;
+
+            let demo2 = {name:"zhangsan"};
+            demo2={name:"lisi"};
+
+            const demo3 = {name:"kaba"};
+            // demo3={name:"baka"};
+            demo3.name="baka";
+            console.log("demo = "+demo);
+            console.log("demo1 = "+demo1);
+            console.log(demo2);
+            console.log(demo3);
+
+
+            // var 与 let const的区别：
+
+            // 作用域的区别：
+            // var 定义的变量的作用域要么是 函数作用域，要么是 全局作用域
+            // 【因为 if语句 不是函数，所以会把里面用 var定义的变量 暴露在外面】这就尴尬
+
+            // 而使用 let const 定义的变量属于 块级作用域，块意思就是花括号，就是变量的作用域只在花括号里，花括号之外就访问不到了
+
+            // var 可以重复定义,重复定义之后的值会覆盖掉之前的值
+            // let const不可以重复定义，
+                // - let 可以重新被赋值
+                // - const 不可以重新被赋值
+            // const在定义对象的时候，可以修改对象的属性
+
+
+            for(var i=0;i<10;i++){
+                // console.log("i = "+i);
+                console.log(i);
+                setTimeout(function(){
+                    console.log("enter settimeout");
+                    console.log("i = "+i);
+                },1);
+            };
+
+            console.log("demo4 = "+demo4);
+            let demo4 = 20;
+
+            // 声明提前的区别：
+            // var 会声明提前，但是 let const 不会声明提前，会报出 ReferenceError 的错误
+            
+        </script>
+    </body>
+</html>

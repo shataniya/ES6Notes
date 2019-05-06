@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>html模板</title>
+    </head>
+    <body>
+        <script>
+            const arr = [1,5,6,7,9,4];
+
+            // for of 不可以遍历对象
+
+            for((element) of arr){
+                // console.log(`for of: ${element}`);
+                // if(element > 5){
+                //     break;//可以直接在里面使用 break 停止
+                // };
+            };    
+
+            arr.forEach((element,index) => {
+                // console.log(`forEach: ${index}==>${element}`);
+                
+            });
+
+            //for in 只会遍历数组索引 index
+            for(index in arr){
+                // console.log(`for in: ${index}`);
+            };
+
+            // find((element,index,array)=>{})
+                // - 才参数上面和 forEach 是一样的
+                // - 满足内部的条件的时候，应该使用 return true 来终止程序的运行，返回的是满足条件的元素
+                // - 如果return false 的话，那么返回值就是 undefined
+            let num1 = arr.find((element,index)=>index==1);
+            console.log("num1 = "+num1);
+            
+            // findIndex() 参数和 find 是一样的
+                // - 如果没找到就返回 -1
+            let num2 = arr.findIndex((element,index,array)=>{
+                // console.log(`${element}==>${index}==>${array}`);
+                if(element==7){
+                    return true;// return false 返回值是 -1
+                }
+            });
+            console.log("num2 = "+num2);
+
+            // some()
+                // - 参数和 find 一样
+                // - 只要有一个元素满足条件就返回 true ,如果都不满足就返回 false
+            let num3 = arr.some((element,index,array)=>{
+                console.log(`${index}==>${element}==>${array}`);
+                if(index > 3){
+                    return true;
+                };
+                return false;
+            });
+            console.log("num3 = "+num3);
+
+            // every()
+                // - 参数和 find 一样
+                // - 必须全部元素满足条件才会返回 true ，如果有一个不满足就返回 false
+            let num4 = arr.every((element,index,array)=>{
+                console.log(`${index}==>${element}==>${array}`);
+                if(index > -1){
+                    return true;
+                };
+                return false;
+            });
+            console.log(num4);
+
+        </script>
+    </body>
+</html>

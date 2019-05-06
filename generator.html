@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>generator</title>
+    </head>
+    <body>
+        <script>
+
+            // generator 顾名思义，就是生成器
+            // - 形式：function *函数名(){}
+            // 1. Generator 就是一种函数，可以控制停止，继续执行的函数
+            // 2. Generator 里的 yield 是放弃的意思，就是放弃执行权，暂停的意思
+                // - yield 类似于 return 执行一次之后就会把结果返回
+            // 3.. Generator 定义之后直接调用是不会执行的
+                // - 要把 Generator 定义的函数赋给一个变量【也就是说要把函数的返回值赋给一个变量】
+                // - 然后这个变量里边会有 next() 方法，变量调用给这个方法就会执行一次函数里的内容
+            // 4. yield 可以理解为停止符，只会执行 yield 之前的代码，而不会执行之后的代码，直到下一次 next() 方法的调用
+            // 5. 可以像操作同步函数一样操作异步函数
+
+            function sum(){
+                console.log("this is sum function");
+            }
+
+            console.log(typeof sum);// function
+
+        
+            function *show(){
+                console.log("this is first");
+                yield;
+                console.log("this is second");
+            };
+
+            function *demo1(){
+                let a = yield;
+                console.log("enter one");
+                console.log("a = "+a);
+                let b = yield;
+                console.log("enter two");
+                console.log("b = "+b);
+            };
+
+            let generator = show();
+
+            console.log(typeof show);// function
+            console.log(typeof generator);// object
+            console.log(generator);
+            generator.next();
+            generator.next();
+
+            let gen1 = demo1();
+            gen1.next(10);
+            gen1.next(5);
+            gen1.next(6);
+
+
+            // 使用 generator
+
+            function plus(){
+                // console.log(this);
+                this.count=0;
+                setTimeout(function(){
+                    this.count++;
+                    console.log(`i => ${this.count}`);
+                },100);
+            }
+
+            function *addplus(){
+                let result1 = yield plus();
+                let result2 = yield plus();
+                let result3 = yield plus();
+                console.log(result1,result2,result3);
+            }
+
+            let demo2 = addplus();
+            console.log(demo2);
+            demo2.next();
+            demo2.next();
+            demo2.next();
+            demo2.next();
+
+            console.log("dmeo2 bottom");
+            console.log(count);
+
+            // 使用 promise
+
+            let info=0;
+
+            function plus2(){
+                return new Promise((success,error)=>{
+                    info++;
+                    setTimeout(function(){
+                        success(`i => ${info}`);
+                    },100);
+                });
+            };
+
+            plus2().then(function(data){
+                console.log(data);
+                return plus2();
+            }).then(function(data){
+                console.log(data);
+                return plus2();
+            }).then(function(data){
+                console.log(data);
+            });
+
+
+
+            function *router(){
+                yield plus2();
+                yield plus2();
+                yield plus2();
+            }
+
+            let demo3 = router();
+            console.log(demo3.next());
+            console.log(demo3.next());
+            console.log(demo3.next());
+            console.log(demo3.next());
+
+
+        
+        </script>
+    </body>
+</html>

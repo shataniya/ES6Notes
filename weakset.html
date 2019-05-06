@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>html模板</title>
+    </head>
+    <body>
+        <script>
+
+            let zh = {name:"zhangsan",age:20};
+            let lisi = {name:"lisi",age:12};
+            
+            // 使用 new 方法创建 weakset实例时，参数就是 【对象数组】，数组，对象都不可以
+            let weakset = new WeakSet([lisi]);
+            console.log(weakset);
+            console.log(typeof weakset);// object
+            console.log(weakset.__proto__);//WeakSet
+
+            // 1. add() 方法添加元素，参数是对象
+            weakset.add({name:"wangwu",age:20});
+            weakset.add({name:"zhaoliu",age:24});
+            weakset.add(zh);
+            console.log(weakset);
+            console.log(weakset.has(zh));//true
+            console.log(weakset.has({name:"zhangsan",age:20}));//false
+
+            // 2. 不可以使用 for of ，foreach 方法遍历
+
+            // 3. 没有 clear() 方法，这与 set 是很大的不同
+
+            // 4. 可以自己清除
+
+            lisi = null;
+            console.log(weakset);
+            console.log(weakset);
+
+        
+        </script>
+    </body>
+</html>

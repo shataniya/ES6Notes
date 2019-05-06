@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>剩余参数</title>
+    </head>
+    <body>
+        <script>
+           function sum(...args){
+            //    console.log(args);
+            //    return args.reduce((pre,curr)=>pre+curr);
+            return args.reduce((pre,curr)=>pre*2+curr);
+           };
+
+           console.log(sum(1,4,3,2));
+
+            // 剩余参数
+            // - 形式就是 ...数组名
+            // 1. 剩余参数，顾名思义，就是把剩下的参数放到一个数组里面
+            function show(a,b,...args){
+                console.log(`a = ${a},b = ${b}`);
+                console.log(`args = ${args}`);
+                console.log(args);
+            }   
+
+            show(1,6,3,8,45,7);
+
+            // 2. 扩展数组
+                // - 如果定义了一个数组，那么 ...数组名 指的就是数组里边的内容
+
+            const array = [1,4,7,2,9,3];
+            console.log(...array);// 1 4 7 2 9 3
+            // console.log(typeof ...array);// 可以看见，不能查看 他的数据类型，因为不认识 ...
+            console.log(...array.toString());// 1 , 4 , 7 , 2 , 9 , 3
+            console.log(array.toString());// 1,4,7,2,9,3
+            console.log(array.toString().length);// 11
+
+            // 3. 可以用作函数的参数
+
+
+            // 自己领悟：
+            // 1. 可以让字符串方便的成为一个数组
+            const str = [..."shataniay"];
+            console.log(str);
+
+            const str1 = ["zhangsan","lisi"];
+            const str2 = ["wangwu","zhaoliu"];
+            const str3 = [...str1,...str2];
+            const str4 = str1.concat(str2);
+            // console.log(`str3 = ${str3}`);
+            console.log(str3);
+            console.log(str3.toString());
+            console.log(str4);
+            console.log(str4.toString());
+            console.log(str3.toString() == str4.toString());// true
+            console.log(str3 == str4);// false
+            console.log(typeof str3);// object
+            console.log(typeof str4);// object
+            // 因为数组是 object,所以，当两个数组比较的时候，实际上是在比较两个内存地址，因为是两个不同的内存地址，所以返回的是false
+
+            const demo1 = [1,2];
+            const demo2 = [1,2];
+            console.log(demo1 == demo2);// false
+            console.log(demo1.toString() == demo2.toString());// true
+
+            const product = [
+                { id:1,name:"zhangsan" },
+                { id:2,name:"lisi" },
+                { id:3,name:"laowang" }
+            ];
+
+            let index = product.findIndex(el=>el.id==2);
+            product.splice(index,1);
+            console.log(product);
+
+            
+
+          
+            
+            
+            
+        </script>
+    </body>
+</html>

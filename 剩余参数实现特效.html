@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>html模板</title>
+        <link rel="stylesheet" href="iconfont/iconfont.css">
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+            }
+
+            body{
+                background-color: #fff;
+                /* overflow: hidden; */
+                position: relative;
+                /* text-align: center; */
+            }
+
+            h2{
+                color: hotpink;
+                margin: 150px auto;
+                text-align: center;
+                text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+
+            }
+            .heading span{
+                display: inline-block;
+                transition: transform 0.25s ease;
+                font-size: 160px;
+            }
+            .heading span:hover{
+                transform: translateY(-40px) scale(2) rotate(10deg);
+                /* color: hotpink; */
+                /* color: aqua */
+            }
+        
+        </style>
+    </head>
+    <body>
+        <h2 class="iconfont heading">i&nbsp;&#xe643;&nbsp;U&nbsp;!!!</h2>
+
+
+        <script>
+        
+            let h2 = document.querySelector(".heading");
+            function text(word){
+                return [...word].map(ele=>`<span>${ele}</span>`).join("");
+            };
+            h2.innerHTML = text(h2.textContent);
+        
+        </script>
+    </body>
+</html>

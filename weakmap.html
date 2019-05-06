@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>weakmap</title>
+    </head>
+    <body>
+        <script>
+
+            const zhang = { name:"zhangsan",age:20 };
+            const lisi = { name:"lisi",age:28 };
+            const zhao = { name:"zhaoliu",age:10 };
+            
+            // weakMap 使用 new 创建
+            // 参数的 key值 必须是一个对象
+            const colors = new WeakMap([[zhang,198]]);
+            console.log(colors);
+
+            // has() 方法
+            console.log(colors.has(zhang));//true
+
+            // delete() 方法
+            // console.log(colors.delete(zhang));//true
+
+            // 没有 size
+            console.log(colors.size);//undefined
+
+            // get() 获取指定元素的 属性值【value值】
+            console.log(colors.get(zhang));
+
+            // set() 设置指定元素的 属性值【value值】
+            colors.set(zhang,120);
+            console.log(colors);
+
+
+        
+        </script>
+    </body>
+</html>

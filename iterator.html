@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>html模板</title>
+    </head>
+    <body>
+        <script>
+
+            // Iterator 就是【迭代器】的意思
+        
+            const colors = ["red","green","blue"];
+            console.log(colors);
+            //查看属性之后，可以看到：
+            // Symbol(Symbol.iterator): ƒ values()
+            console.log(colors.values());//Array Iterator {}
+
+            let coloriterator = colors.values();
+            console.log(coloriterator.__proto__);//Array Iterator
+            // 可以看见原型对象里面有 next() 方法
+
+            // 可以使用 next() 方法来逐个展示对象里的元素，或者说逐个遍历元素
+            console.log(coloriterator.next());
+            //{value: "red", done: false}
+            console.log(coloriterator.next());
+            //{value: "green", done: false}
+            console.log(coloriterator.next());
+            //{value: "blue", done: false}
+            console.log(coloriterator.next());
+            //{value: undefined, done: true}
+
+            // 可以看见当遍历完成的时候，done属性 的属性值变为 true
+            // 因为遍历完了，所以 value 变成了 undefined
+
+            class student{
+                constructor(name,age){
+                    this.name=name;
+                    this.age=age;
+                }
+                callName(){
+                    let i=0;
+                    let item = this.name;
+                    return {
+                        next(){
+
+                            const index = i++;
+
+                            return {
+                                index,
+                                name:item
+                            }
+                        }
+                    };
+                }
+            }
+
+            let stu1 = new student("zhangsan",20);
+            let stu = stu1.callName();
+            console.log(stu.next());
+            console.log(stu.next());
+            console.log(stu.next());
+
+        
+        </script>
+    </body>
+</html>

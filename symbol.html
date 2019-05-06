@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>symbol</title>
+    </head>
+    <body>
+        <script>
+
+            // symbol 顾名思义，就是【符号】，作用就是所谓唯一的标识
+            // symbol 可以认为是第七种数据类型 也就是 symbol数据类型
+                // - 可以作为唯一的标识
+            // 1. symbol 不是一个构造函数，因此不可以使用 new 关键字创建
+            // 2. 可以唯一的标识
+            // 3. symbol 使用普通方法不能够遍历
+                // - Object.getOwnPropertySymbols() 才可以获取属性名，这是为 symbol 专门定制的方法,返回的是数组
+
+            // const sy1 = new Symbol();// Symbol is not a constructor，说明 symbol 不是构造函数，不可以使用 new 创建
+            const sy1 = Symbol();
+            console.log(sy1);
+            console.log(typeof sy1);// symbol
+
+            const sy2 = Symbol("zhangsan");
+            const sy3 = Symbol("zhangsan");
+            console.log(sy2);
+            console.log(sy3);
+            console.log(sy2 == sy3);// false，因此是唯一的标识
+
+            const ob = {
+                [Symbol('zhangsan')]:{id:10,gender:"man"},
+                [Symbol('zhangsan')]:{id:11,gender:"man"}
+            };
+
+            const ob1 = {
+                "zhangsan":{id:10,dender:"man"},
+                "xiaoming":{id:12,gender:"woman"}
+            }
+
+            for(let name in ob1){
+                console.log(name);// 可以看见没法遍历
+            };
+
+            // Object.getOwnPropertyNames() 返回一个数组
+            console.log(Object.getOwnPropertyNames(ob1));// Object.getOwnPropertyNames() 无法获取属性名
+
+            // Object.getOwnPropertySymbols 返回一个数组
+            console.log(Object.getOwnPropertySymbols(ob));// Object.getOwnPropertySymbols 才可以获取属性名
+            let name = Object.getOwnPropertySymbols(ob);
+            console.log(ob[name[0]]);
+            
+        </script>
+    </body>
+</html>

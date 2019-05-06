@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>html模板</title>
+    </head>
+    <body>
+        <button>zhangsan</button>
+        <button>lisi</button>
+        <button>wangwu</button>
+        <button>zhaoliu</button>
+        <button>dongqi</button>
+
+        <script>
+        
+            let buttons = document.querySelectorAll("button");
+            console.log(buttons);
+
+            const clickCounts = new Map();
+
+            buttons.forEach(el=>{
+                // console.log(el);
+                clickCounts.set(el,0);
+                el.addEventListener("click",function(){
+                    // console.log("onclick");
+                    const val = clickCounts.get(this);
+                    // console.log(val);
+                    clickCounts.set(this,val+1);
+                    console.log(clickCounts);
+                });
+            });
+        
+        </script>
+    </body>
+</html>

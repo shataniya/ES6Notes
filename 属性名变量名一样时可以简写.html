@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>属性名变量名一样时可以简写</title>
+    </head>
+    <body>
+        <script>
+            const name="zhangsan";
+            const age=18;
+            const per={
+                name,// 这里不需要写 name:name,因为属性名和变量名一样时可以只写一个
+                age,
+                call(){
+                    console.log(`name: ${name}, age: ${age}`);
+                }
+            };
+            console.log(per);
+            // console.log(per.call());
+            per.call();
+        </script>
+    </body>
+</html>

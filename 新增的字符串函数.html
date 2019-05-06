@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>新增的字符串函数</title>
+    </head>
+    <body>
+        <script>
+
+            const str = "hello world is nihao";
+        
+        // 新增的字符串函数：
+        // 1. startWith();
+            // - 第一个参数是字符串，就是以什么字符串为开头
+            // - 第二个参数是位置，就是在什么位置以参数一的字符串为开头
+            console.log(str.startsWith("world",6));//true
+
+        // 2. endsWith();
+            // - 第一个参数是字符串，就是以什么字符串为结尾
+            // - 第二个参数是位置，就是在什么位置结尾的
+            console.log(str.endsWith("nihao"));//true
+            console.log(str.endsWith("is",14));//true
+            console.log(str.endsWith("is",16));//false
+
+        // 3. includes()
+            // - 参数就是字符串，检查是否包含这个字符串
+            console.log(str.includes("world"));//true
+
+        // 4. repeat()
+            // - 参数就是 要重复的次数
+            console.log("em".repeat(5));
+        
+        </script>
+    </body>
+</html>

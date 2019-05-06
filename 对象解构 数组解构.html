@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>html模板</title>
+    </head>
+    <body>
+        <script>
+            const per = {};    
+
+            // 解构对象里的必须要是 属性名
+            // 解构对象里也可以使用 默认值
+            const {name="zhangsan",age=30,gender="man"} = per;
+            console.log(name);
+            console.log(age);
+            console.log(gender);
+
+            // 默认值只有在 值为undefined才会启用默认值
+
+            // 数组解构
+            const array = [15,13,12];
+            const [n1,,n2] = array;
+            console.log(n1);
+            console.log(n2);
+
+
+
+            
+        </script>
+    </body>
+</html>

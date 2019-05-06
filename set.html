@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>html模板</title>
+    </head>
+    <body>
+        <script>
+        
+            // set 可以看成是唯一的数组，不会用重复的元素存在，只能添加一个元素一次，如果过再添加相同的元素也不会有作用
+            // set 是一个构造函数，因此要使用 new 来创建,注意：是大写的 Set
+            // 创建方式： new Set()
+            const colors = new Set();
+            colors.add("red");
+            colors.add("green");
+            colors.add("blue");
+            console.log(colors);//{"red", "green", "blue"}  可以看见很像一个数组
+            console.log(typeof colors);//object
+
+            // 1. 获取 set 的长度，使用的是 size,而不是length
+            console.log(colors.size);//3
+
+            // 2. add() 添加元素 ，参数就是要添加的元素
+                // - 返回值是 添加之后的 set
+            console.log(colors.add("10"));//Set(4) {"red", "green", "blue", "10"}
+
+            // 3. delete() 删除指定的元素，参数就是要删除的元素
+                // - 删除成功就返回 true
+            console.log(colors.delete("10"));//true
+
+            // 4. has() 检查是否含有指定元素，参数就是指定的元素
+            console.log(colors.has("red"));//true
+            console.log(colors.has("pink"));//false
+
+            // 5. clear() 删除set里面所有的元素，没有参数
+                // - 没有返回值，或者说返回值是 undefined
+            // console.log(colors.clear());//undefined
+            // console.log(colors);//Set(0) {} , 可以看见已经删除完了
+
+            // 6. values() 
+            console.log(colors.values());//SetIterator {"red", "green", "blue"}
+            // 可以看见是一个 Iterator，也就是遍历器，里面有 next() 方法，可以遍历set
+
+            const colorset = colors.values();
+            console.log(colorset.next());
+            console.log(colorset.next());
+            console.log(colorset.next());
+            console.log(colorset.next());
+
+            // 7. set 很重要的一个功能就是去重：就是去掉重复元素的意思
+            const nums = [1,3,5,7,7,6,6,4,3];
+            console.log(nums.length);//9
+            const numset = new Set(nums);
+            console.log(numset);
+            console.log(numset.size);//6
+            console.log(typeof numset);
+            console.log(numset.__proto__);//Set 他的原型对象是一个set
+            // 可以看见 set 把那些重复的元素去掉了
+            const newnums = [...numset];
+            console.log(newnums);
+            console.log(newnums.length);
+            console.log(newnums instanceof Array);//true
+
+
+            // 【注意】set 只接收 数组 作为参数，别的都不行
+            let newset = new Set([1,36,3]);
+            console.log(newset);//Set(3) {1, 36, 3}
+
+            // for in 
+            // 1. 可以遍历对象，可以遍历数组，
+            // 2. 可以看出 for in 遍历的是属性名，或者说索引 
+            // 3. 不可以遍历set
+            const people = {name:"zhangsan",age:20};
+
+            for(let name in people){
+                console.log(name);//可以看出 for in 不能遍历set
+            }
+
+            // for of 可以遍历set
+            for(name of numset){
+                console.log(name);
+                console.log(typeof name);
+            }
+            // 使用 let 接收的就是 数字，
+            // 不使用 let 接收的就是 字符串形式
+
+
+            newset.forEach((value,key,Ownset)=>{
+                console.log(value,key,Ownset);
+            });
+            // 可以看出 使用 foreach 循环之后，属性值和属性名是一样的，这是为了
+            // 符合 foreach 的循环规则
+        
+        </script>
+    </body>
+</html>

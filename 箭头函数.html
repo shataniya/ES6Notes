@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>箭头函数</title>
+    </head>
+    <body>
+        <script>
+            
+            function person(name="lisi",age=18,callback){
+                // ES6 中默认值的设置可以直接在参数里赋值，这个值就是默认值
+                this.name=name;
+                this.age=age;
+                callback&&callback();
+            };
+            // person.prototype.sayname = function(){
+            //     console.log("name: "+this.name);
+            //     console.log(this);
+            // };
+            
+            person.prototype.sayname = ()=>{
+                console.log(this);// window
+                console.log("name: "+this.name);
+            };
+
+            person.prototype.callname = function(){
+                console.log(this);
+                setTimeout(()=>{
+                    console.log(this);// 这里的 this 就是继承了 父作用域 的 this
+                },100);
+            };
+
+
+            console.log(this);// 如果 this悬空，就是没有对象的时候，那么默认就是 window
+            let per1 = new person("zhangsan",20);
+            // per1.sayname();
+            per1.callname();
+
+            let per2 = new person();
+            // console.log(per2);
+            
+            // 箭头函数的特点：
+            // 1. 箭头函数的 this 的继承 父作用域 的 this
+            // 2. 箭头函数不会进行 this 的绑定，不会绑定调用函数的对象
+                // - 所以不可以使用 箭头函数 定义 构造函数
+            // 3. 箭头函数里没有 arguments 这个对象
+
+            // let show = (name,age)=>{
+            //     console.log(arguments);//arguments is not defined
+            // };
+            let show = function(name,age){
+                console.log(arguments.callee);
+            };
+            show(2,3);
+
+
+        </script>
+    </body>
+</html>

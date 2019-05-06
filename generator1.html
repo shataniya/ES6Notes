@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>html模板</title>
+    </head>
+    <body>
+        <script>
+
+            // 这里要把 input 定义为异步执行函数
+            // 如何成为异步执行函数？
+                // - 就是在函数里 添加回调函数
+
+
+            function income(data){
+                return new Promise((success,error)=>{
+                    success(data);
+                });
+            };
+            
+            function input(data){
+                // setTimeout(function(){
+                //     demo.next(data)
+                // },100);
+                income(data).then(data=>{
+                    demo.next(data);
+                },()=>{
+                    console.log("error");
+                });
+            };
+
+            function* show(){
+                console.log("enter a");
+                let a = yield input(10);
+                console.log("a = "+a);
+
+                console.log("enter b");
+                let b = yield input(20);
+                console.log("b = "+b);
+
+                console.log("enter c");
+                let c = yield input(30);
+                console.log("c = "+c);
+
+                console.log(a,b,c);
+            }
+
+            let demo = show();
+
+            demo.next();
+        
+        </script>
+    </body>
+</html>

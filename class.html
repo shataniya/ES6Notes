@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>class</title>
+    </head>
+    <body>
+        <script>
+        
+            // class 就是类的意思
+            // class 的特点：
+            // 1. class 是一种特殊的函数
+            // 2. 在 class 里的 constructor 就是构造函数
+            // 3. 在 class 里边可以直接定义方法，效果等价于在 原型对象里直接定义
+            // 4. 使用 static 定义静态方法：
+                // - 静态方法就是只有类可以使用，实例不能使用的方法
+                // 例如：Array.from() 与 Array.of() 就是静态方法，Array可以使用，但是实例的数组不可以使用
+            // 5. set get 定义的不是方法，而是属性
+
+            // 类的继承：
+
+
+
+
+            class user{};
+            console.log(user);
+            console.log(typeof user);// function
+
+            class demo1{
+                constructor(name="zhangsan",age=13){
+                    this.name=name;
+                    this.age=age;
+                } // 注意：这里不需要逗号
+
+                // 定义方法：在这里直接定义的方法 相当于在 原型对象 中定义
+                callname(){
+                    console.log(`name: ${this.name}`);
+                }
+
+                static call(){
+                    console.log("i love you");
+                }
+
+                set wugui(value){
+                    this.wuName = value;
+                }
+                get wugui(){
+                    return `${this.wuName} is sataniya`;
+                }
+            }
+            let exp1 = new demo1();
+            console.log(exp1); 
+            // console.log();
+            exp1.callname();
+            console.log("callname" in demo1);// false
+            console.log("callname" in demo1.prototype);//true
+            console.log(demo1.prototype.hasOwnProperty("callname"));//true
+            // 可以看见这个方法已经在 原型对象 里定义了
+
+            demo1.call();// 可以类可以调用，但是类的实例不可以调用
+
+
+            // 类的继承：
+            // 1. 子类使用 extends 关键字来继承父类
+            // 2. 使用 super() 来继承父类的参数
+            // 3. 继承的时候连同 方法 一起继承
+
+
+            class Animal{
+                constructor(name){
+                    this.name=name;
+                    this.belly=[];
+                }
+
+                eat(...args){
+                    // args.map(food=>this.belly.push(food));
+                    // return this.belly;
+                    return [...args];
+                }
+
+                call(){
+                    console.log(this.name);
+                }
+            }
+
+            class Cat extends Animal{
+                constructor(name,age){
+                    super(name);
+                    this.age=age;
+                }
+                callCat(){
+                    console.log(`name: ${this.name},age: ${this.age}`);
+                }
+            }
+
+
+            const dog = new Animal("wangcai");
+            let foods = dog.eat("西瓜","肉","蟑螂");
+            console.log(dog);
+            console.log(foods);
+
+            const miao = new Cat("mm",3);
+            console.log(miao);
+            miao.callCat();
+            miao.call();
+
+
+            
+
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Promise</title>
+    </head>
+    <body>
+        <script>
+            function bi(a,b){
+                return new Promise((resolve,reject)=>{
+                    if(a>b){
+                        resolve(a);
+                    }else{
+                        reject(b);
+                    }
+                });
+            }
+
+            bi(4,3).then(data=>{
+                console.log(`max: ${data}`);
+            },data=>{
+                console.log(`max: ${data}`);
+            });
+            
+            // Promise 有两个函数：
+            // 1. resolve 成功的回调
+            // 2. reject 失败的回调
+
+            // 之后可以使用 catch 来接收 promise 抛出的错误
+
+            console.log(bi(1,2).catch(error=>{
+                console.log(error);
+            }));
+
+            // 多个 promise 的处理有两种方法：
+            // 1. Promise.all
+                // - 等所有的 promise 处理之后才会返回结果
+            // 2. Promise.apply
+                // - 依赖于第一个的返回结果，如果第一个是成功的调用，就是执行成功的调用，否则就是执行失败的调用
+
+
+        </script>
+    </body>
+</html>

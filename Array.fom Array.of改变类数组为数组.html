@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Array.from改变类数组为数组</title>
+    </head>
+    <body>
+        <script>
+            function show(){
+                console.log(arguments);// 可以看见 arguments 是一个对象 Object
+                console.log(Array.isArray(arguments));// false ==> 可以证明 arguments 不是一个数组
+                console.log(arguments instanceof Array);// false ==> 可以证明 arguments 不是一个数组
+                console.log(arguments.length);
+                // let array = Array.from(arguments);// 转换之后就是 数组了 Array
+                // console.log(array);
+                // console.log(Array.isArray(array));// true
+                // console.log(array instanceof Array);// true
+                let array = Array.of(arguments);
+                console.log(array[0] == arguments);// true
+                console.log(Array.isArray(array));
+                console.log(array instanceof Array);
+                
+            };
+            show(1,2,3,4,5);
+
+            // 可以看见 arguments 是一个有 length属性的类数组，但是并不是数组
+
+            // 那么如何将这些类数组转换成数组呢？
+            // 有两个方法：
+            // Array.from() Array.of()
+                // - 首先这两个方法不是 Array的原型对象的方法
+            console.log("from" in Array);// true
+            console.log(Array.hasOwnProperty("from"));// true 这里就已经说明 from 是 Array 里的属性
+            // 因为不是原型的方法，所以只能使用 Array去调用from,即 Array.from()
+
+            // Array.from()
+                // - 可以把 类数组 转换成 数组
+
+
+
+            function person(name="zhangsan",age=13){
+                this.name = name;
+                this.age = age;
+            };
+
+            // 属性名【记得属性名要添加字符串】 in 对象 
+                // - 检查 对象 里是否含有这个 属性
+            console.log("name" in person);// true
+            
+            
+        </script>
+    </body>
+</html>
